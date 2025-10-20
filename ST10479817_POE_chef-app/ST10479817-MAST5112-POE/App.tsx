@@ -5,11 +5,13 @@ import HomeScreen from './screens/HomeScreen';
 import AddMenuScreen from './screens/AddMenuScreen';
 import FilterScreen from './screens/FilterScreen';
 import { Ionicons } from '@expo/vector-icons';
+import { MenuProvider } from './MenuContext';
 
 const Tab= createBottomTabNavigator();
 
 export default function App() {
   return(
+    <MenuProvider>
     
     <NavigationContainer>
       
@@ -30,5 +32,6 @@ export default function App() {
       <Tab.Screen name="Filter" component={FilterScreen}/>
       </Tab.Navigator>
     </NavigationContainer>
+    </MenuProvider>
   );
 }
