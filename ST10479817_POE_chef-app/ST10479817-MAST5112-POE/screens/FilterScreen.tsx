@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Image, Text, FlatList} from 'react-native';
+import {View, Image, Text, FlatList, StyleSheet} from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useMenu } from '../MenuContext';
 
@@ -12,40 +12,95 @@ export default function FilterScreen() {
     const filteredMenu = selectedCourse === 'All' ? menu : menu.filter(item => item.course === selectedCourse);
 
     return(
-        <View>
-            <View>
-                <Text>Filter Menu</Text>
+        <View style={styles.container}>
+            <View style={styles.header}>
+                <Image source={require('../assets/logo.png') } style={styles.image} />
+                <Text style={styles.heading}>Filter Menu</Text>
             </View>
-            <View>
-                <Text>Filter by Course</Text>
+            <View style={styles.mainContent}>
+                <Text style={styles.title}>Filter by Course</Text>
 
-                <Picker selectedValue={selectedCourse} onValueChange={setSelectedCourse}>
-                    <Picker.Item label='All Courses' value="All" />
-                    <Picker.Item label='Starters' value="Starters" />
-                    <Picker.Item label='Mains' value="Mains" />
-                    <Picker.Item label='Desserts' value="Desserts" />
+                <View style={styles.pickerContainer}>
+                    <Picker selectedValue={selectedCourse} onValueChange={setSelectedCourse} style={styles.picker}>
+                        <Picker.Item label='All Courses' value="All" />
+                        <Picker.Item label='Starters' value="Starters" />
+                        <Picker.Item label='Mains' value="Mains" />
+                        <Picker.Item label='Desserts' value="Desserts" />
 
-                </Picker>
+                    </Picker>
+                </View>
             </View>
 
-            <Text>{selectedCourse}</Text>
-            <Text>Showing {filteredMenu.length} items</Text>
+            <View style={styles.rowHeading}>
+
+            <Text style={styles.subtitle}>{selectedCourse}</Text>
+            <Text style={styles.count}>Showing {filteredMenu.length} items</Text>
+
+            </View>
 
             <FlatList data={filteredMenu} keyExtractor={item => item.id.toString()} renderItem={({item}) =>(
-                <View>
-                    <Text>{item.name}</Text>
+                <View style={styles.card}>
+                    <View style={styles.row}>
+                                                                    <Text style={styles.name}>{item.name}</Text>
+                                                                    <Text style={styles.pricing}>R{item.price.toFixed(2)}</Text>
+                                                                </View>
+                    
                     <Text>{item.description}</Text>
-                    <Text>R{item.price.toFixed(2)}</Text>
-                    <Text>{item.course}</Text>
+                    <Text>Course: {item.course}</Text>
                 </View>
             )}
-            ListEmptyComponent={<Text>No dishes has been found.</Text>}/>
+            ListEmptyComponent={<Text style={styles.noText}>No dishes has been found.</Text>}/>
 
         </View>
 
     );
-
-
-
-
 }
+
+const styles = StyleSheet.create({
+    
+    image: { width: 40, height: 40, marginRight: 10, marginBottom: -15 },
+      heading: { fontSize: 24, fontWeight: 'bold', color: '#fff', textAlign: 'center', marginTop: 14 },
+  header: { fontSize: 24, fontWeight: 'bold', color: '#fff', marginBottom: 10, backgroundColor: '#2196f3', padding: 10, flexDirection: 'row', alignItems: 'center', position: 'absolute',
+  top: 0,
+  left: 0,
+  right: 0,
+  display: 'flex'
+  },
+  container: { flex: 1, padding: 20, backgroundColor: '#fff', paddingTop: 80 },
+  title: { fontSize: 22, fontWeight: 'bold', color: '#2196f3', paddingBottom: 10  },
+  subtitle: {  fontSize: 20, fontWeight: 'bold', textAlign: 'left', marginBottom: 5,  },
+        row: {flexDirection: 'row',      
+          justifyContent: 'space-between',  
+          alignItems: 'center', 
+        },
+        rowHeading: {flexDirection: 'row',      
+          justifyContent: 'space-between',  
+          alignItems: 'center', 
+          paddingBottom: 15
+        },
+            pricing: {fontSize: 15, fontWeight: 'bold', marginTop: 5, textAlign: 'right',
+
+    },
+        pickerContainer: {
+    borderWidth: 1,
+    borderColor: '#000000ff',
+    borderRadius: 8,
+    overflow: 'hidden', // ensures rounded corners work on Android
+    marginBottom: 10
+    
+  },
+
+    name: {fontWeight: 'bold', 
+           fontSize: 18 
+        },
+  
+    mainContent: { fontSize: 20, marginBottom: 10, padding: 10, borderRadius: 8,   borderBlockColor: '#000000ff', borderWidth:  2},
+  picker: {  backgroundColor: '#f1f2f4', height: 50,
+    width: '100%',  },
+  count: { fontSize: 16,  textAlign: 'right' },
+   noText: {textAlign: 'center', paddingTop: 20
+
+    },
+  card: { backgroundColor: '#f9f9f9', borderWidth: 1, borderRadius: 10, padding: 10, marginBottom: 10,   borderBlockColor: '#000000ff'  },
+  
+});

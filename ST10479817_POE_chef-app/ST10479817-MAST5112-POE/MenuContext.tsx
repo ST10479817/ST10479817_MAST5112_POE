@@ -1,5 +1,3 @@
-//MenuContext
-
 import { createContext, useContext, useState } from "react"
 
 
@@ -39,8 +37,8 @@ export const MenuProvider = ({ children }: { children: React.ReactNode }) => {
 // This is for error handling.
 export const useMenu = () => {
 
-    const context = useContext(MenuContext)
+    const context = useContext(MenuContext);
     if (!context) throw new Error('useMenu must be used inside MenuProvider');
     return context;
-    
+
 };
