@@ -27,7 +27,7 @@ export default function HomeScreen() {
                     </View>
                 )}
                 ListEmptyComponent={<Text style={styles.noText}>No dishes added yet.</Text>}
-            />
+                />
         </View>
 
     );
@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
               textAlign: 'center', 
               marginTop: 14 
             },
+            
     row: {flexDirection: 'row',      
           justifyContent: 'space-between',  
           alignItems: 'center', 
@@ -98,6 +99,5 @@ const styles = StyleSheet.create({
         },
 
     noText: {textAlign: 'center', 
-
     }
 });

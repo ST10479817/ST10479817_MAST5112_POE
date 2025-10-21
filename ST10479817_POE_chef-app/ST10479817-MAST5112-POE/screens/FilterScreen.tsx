@@ -41,10 +41,9 @@ export default function FilterScreen() {
             <FlatList data={filteredMenu} keyExtractor={item => item.id.toString()} renderItem={({item}) =>(
                 <View style={styles.card}>
                     <View style={styles.row}>
-                                                                    <Text style={styles.name}>{item.name}</Text>
-                                                                    <Text style={styles.pricing}>R{item.price.toFixed(2)}</Text>
-                                                                </View>
-                    
+                        <Text style={styles.name}>{item.name}</Text>
+                        <Text style={styles.pricing}>R{item.price.toFixed(2)}</Text>
+                    </View>
                     <Text>{item.description}</Text>
                     <Text>Course: {item.course}</Text>
                 </View>
@@ -57,36 +56,74 @@ export default function FilterScreen() {
 }
 
 const styles = StyleSheet.create({
-    
-    image: { width: 40, height: 40, marginRight: 10, marginBottom: -15 },
-      heading: { fontSize: 24, fontWeight: 'bold', color: '#fff', textAlign: 'center', marginTop: 14 },
-  header: { fontSize: 24, fontWeight: 'bold', color: '#fff', marginBottom: 10, backgroundColor: '#2196f3', padding: 10, flexDirection: 'row', alignItems: 'center', position: 'absolute',
-  top: 0,
-  left: 0,
-  right: 0,
-  display: 'flex'
-  },
-  container: { flex: 1, padding: 20, backgroundColor: '#fff', paddingTop: 80 },
-  title: { fontSize: 22, fontWeight: 'bold', color: '#2196f3', paddingBottom: 10  },
-  subtitle: {  fontSize: 20, fontWeight: 'bold', textAlign: 'left', marginBottom: 5,  },
-        row: {flexDirection: 'row',      
-          justifyContent: 'space-between',  
-          alignItems: 'center', 
-        },
-        rowHeading: {flexDirection: 'row',      
-          justifyContent: 'space-between',  
-          alignItems: 'center', 
-          paddingBottom: 15
-        },
-            pricing: {fontSize: 15, fontWeight: 'bold', marginTop: 5, textAlign: 'right',
-
+    image: { width: 40, 
+            height: 40, 
+            marginRight: 10, 
+            marginBottom: -15 
     },
-        pickerContainer: {
-    borderWidth: 1,
-    borderColor: '#000000ff',
-    borderRadius: 8,
-    overflow: 'hidden', // ensures rounded corners work on Android
-    marginBottom: 10
+
+    heading: { fontSize: 24, 
+            fontWeight: 'bold', 
+            color: '#fff', 
+            textAlign: 'center', 
+            marginTop: 14 
+    },
+
+    header: { fontSize: 24, 
+        fontWeight: 'bold', 
+        color: '#fff', 
+        marginBottom: 10, 
+        backgroundColor: '#2196f3', 
+        padding: 10, 
+        flexDirection: 'row', 
+        alignItems: 'center', 
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        display: 'flex'
+  },
+
+    container: { flex: 1, 
+                padding: 20, 
+                backgroundColor: '#fff', 
+                paddingTop: 80 
+    },
+
+    title: { fontSize: 22, 
+            fontWeight: 'bold', 
+            color: '#2196f3', 
+            paddingBottom: 10  
+    },
+
+    subtitle: {  fontSize: 20, 
+                fontWeight: 'bold', 
+                textAlign: 'left', 
+                marginBottom: 5,  
+    },
+
+    row: {flexDirection: 'row',      
+          justifyContent: 'space-between',  
+          alignItems: 'center', 
+        },
+
+    rowHeading: {flexDirection: 'row',      
+                justifyContent: 'space-between',  
+                alignItems: 'center', 
+                paddingBottom: 15
+        },
+
+    pricing: {fontSize: 15, 
+              fontWeight: 'bold', 
+              marginTop: 5, 
+              textAlign: 'right',
+    },
+
+    pickerContainer: { borderWidth: 1,
+                        borderColor: '#000000ff',
+                        borderRadius: 8,
+                        overflow: 'hidden', 
+                        marginBottom: 10
     
   },
 
@@ -94,13 +131,33 @@ const styles = StyleSheet.create({
            fontSize: 18 
         },
   
-    mainContent: { fontSize: 20, marginBottom: 10, padding: 10, borderRadius: 8,   borderBlockColor: '#000000ff', borderWidth:  2},
-  picker: {  backgroundColor: '#f1f2f4', height: 50,
-    width: '100%',  },
-  count: { fontSize: 16,  textAlign: 'right' },
-   noText: {textAlign: 'center', paddingTop: 20
-
+    mainContent: { fontSize: 20, 
+                    marginBottom: 10, 
+                    padding: 10, 
+                    borderRadius: 8,   
+                    borderBlockColor: '#000000ff', 
+                    borderWidth:  2
     },
-  card: { backgroundColor: '#f9f9f9', borderWidth: 1, borderRadius: 10, padding: 10, marginBottom: 10,   borderBlockColor: '#000000ff'  },
+
+    picker: { backgroundColor: '#f1f2f4', 
+              height: 50,
+              width: '100%',  
+},
+
+    count: { fontSize: 16,  
+             textAlign: 'right' 
+    },
+
+    noText: {textAlign: 'center', 
+             paddingTop: 20
+    },
+
+    card: { backgroundColor: '#f9f9f9', 
+            borderWidth: 1, 
+            borderRadius: 10, 
+            padding: 10, 
+            marginBottom: 10,   
+            borderBlockColor: '#000000ff'  
+    },
   
 });
