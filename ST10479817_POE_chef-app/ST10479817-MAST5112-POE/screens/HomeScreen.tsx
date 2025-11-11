@@ -7,6 +7,25 @@ export default function HomeScreen() {
 
     const {menu} = useMenu();
     const totalItems = menu.length;
+    
+
+    // Calculating the Average Prices of each Course by Using a For Loop
+    const calculateAverage = (course: string) => {
+        let total = 0;
+        let count = 0;
+
+        for (let i = 0; i < menu.length; i++) {
+            if (menu[i].course === course) {
+                total += menu[i].price;
+                count++;
+            }
+        }
+        return count > 0 ? total / count : 0;
+    };
+
+    const avgStarters = calculateAverage('Starters');
+    const avgMains = calculateAverage('Mains');
+    const avgDesserts = calculateAverage('Desserts');
 
     return(
         <View style={styles.container}>
@@ -15,6 +34,22 @@ export default function HomeScreen() {
                 <Text style={styles.heading}>Christoffel's Menu</Text>
             </View>
                 <Text style={styles.count}>Total Menu Items: {totalItems}</Text>
+
+                <View style={styles.averageContainer}>
+                    <Text style={styles.averageHeader}> Average Price by Course</Text>
+                    <View style={styles.averageRow}>
+                        <Text>Starters:</Text>
+                        <Text>R{avgStarters ? avgStarters.toFixed(2) : '0.00'}</Text>
+                    </View>
+                    <View style={styles.averageRow}>
+                        <Text>Mains:</Text>
+                        <Text>R{avgMains ? avgMains.toFixed(2) : '0.00'}</Text>
+                    </View>
+                    <View style={styles.averageRow}>
+                        <Text>Desserts:</Text>
+                        <Text>R{avgDesserts ? avgDesserts.toFixed(2) : '0.00'}</Text>
+                    </View>
+                </View>
 
                 <FlatList data={menu} keyExtractor={item => item.id.toString()} renderItem={({item}) =>(
                     <View style={styles.card}>
@@ -35,6 +70,26 @@ export default function HomeScreen() {
 
 // Stylesheet Container 
 const styles = StyleSheet.create({
+
+    averageContainer: {borderRadius: 8,
+                        marginBottom: 1,  
+                        borderBlockColor: '#000', 
+                        borderWidth:  2,
+                        padding: 15
+            },
+
+    averageHeader: {fontSize: 20,
+                    fontWeight: 'bold',
+                    textAlign: 'center',
+                    marginBottom: 5,
+                   },
+            
+    averageRow: {flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginVertical: 3,
+                },
+
+    
     image: {width: 40, 
             height: 40, 
             marginRight: 10, 
@@ -73,7 +128,7 @@ const styles = StyleSheet.create({
             },
 
     count: {fontSize: 18, 
-            marginBottom: 20, 
+            marginBottom: 10, 
             padding: 10, 
             borderRadius: 8, 
             flexDirection: 'row', 
@@ -90,9 +145,11 @@ const styles = StyleSheet.create({
            borderWidth:  1.5,
         },
     
-    pricing: {fontSize: 15, fontWeight: 'bold', marginTop: 5, textAlign: 'right',
-
-    },
+    pricing: {fontSize: 15, 
+            fontWeight: 'bold', 
+            marginTop: 5, 
+            textAlign: 'right',
+            },
 
     name: {fontWeight: 'bold', 
            fontSize: 18 
