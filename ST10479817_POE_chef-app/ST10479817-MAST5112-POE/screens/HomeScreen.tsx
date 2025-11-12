@@ -54,11 +54,25 @@ export default function HomeScreen() {
                 <FlatList data={menu} keyExtractor={item => item.id.toString()} renderItem={({item}) =>(
                     <View style={styles.card}>
                         <View style={styles.row}>
-                            <Text style={styles.name}>{item.name}</Text>
-                            <Text style={styles.pricing}>R{item.price.toFixed(2)}</Text>
+                            <View>
+                                <Text style={styles.name}>{item.name}</Text>
+                                <Text style={styles.pricing}>R{item.price.toFixed(2)}</Text>
+                                <Text>{item.description}</Text>
+                                <Text>Course: {item.course}</Text>
+                            </View>
+                            <View>
+
+                                {item.image && (
+                                    <Image
+                                        source={typeof item.image === 'string' ? { uri: item.image } : item.image}
+                                        style={styles.cardImage}
+                                        resizeMode="cover"
+                                    />
+                                )}
+
+                            </View>
                         </View>
-                        <Text>Course: {item.course}</Text>
-                        <Text>{item.description}</Text>
+                        
                     </View>
                 )}
                 ListEmptyComponent={<Text style={styles.noText}>No dishes added yet.</Text>}
@@ -111,7 +125,6 @@ const styles = StyleSheet.create({
             
     row: {flexDirection: 'row',      
           justifyContent: 'space-between',  
-          alignItems: 'center', 
         },
             
     header: {fontSize: 24, 
@@ -137,22 +150,29 @@ const styles = StyleSheet.create({
             borderWidth:  2
         },
 
+    cardImage: {
+        width: 120,
+        height: 120,
+        borderRadius: 10,
+        alignItems: 'center'
+    },
+
     card: {backgroundColor: '#f9f9f9', 
-           padding: 15, 
+           padding: 10, 
            borderRadius: 10, 
            marginBottom: 10,
            borderBlockColor: '#000', 
            borderWidth:  1.5,
         },
     
-    pricing: {fontSize: 15, 
+    pricing: {fontSize: 16, 
             fontWeight: 'bold', 
             marginTop: 5, 
-            textAlign: 'right',
+            textAlign: 'left',
             },
 
     name: {fontWeight: 'bold', 
-           fontSize: 18 
+           fontSize: 20 
         },
 
     noText: {textAlign: 'center', 

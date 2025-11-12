@@ -41,11 +41,25 @@ export default function FilterScreen() {
             <FlatList data={filteredMenu} keyExtractor={item => item.id.toString()} renderItem={({item}) =>(
                 <View style={styles.card}>
                     <View style={styles.row}>
+                        <View>
                         <Text style={styles.name}>{item.name}</Text>
                         <Text style={styles.pricing}>R{item.price.toFixed(2)}</Text>
+                        <Text>{item.description}</Text>
+                        <Text>Course: {item.course}</Text>
+                        </View>
+                        <View>
+
+                            {item.image && (
+                                <Image
+                                    source={typeof item.image === 'string' ? { uri: item.image } : item.image}
+                                    style={styles.cardImage}
+                                    resizeMode="cover"
+                                />
+                            )}
+
+                        </View>
                     </View>
-                    <Text>{item.description}</Text>
-                    <Text>Course: {item.course}</Text>
+                    
                 </View>
             )}
             ListEmptyComponent={<Text style={styles.noText}>No dishes has been found.</Text>}/>
@@ -104,7 +118,7 @@ const styles = StyleSheet.create({
 
     row: {flexDirection: 'row',      
           justifyContent: 'space-between',  
-          alignItems: 'center', 
+          
         },
 
     rowHeading: {flexDirection: 'row',      
@@ -113,10 +127,17 @@ const styles = StyleSheet.create({
                 paddingBottom: 15
         },
 
-    pricing: {fontSize: 15, 
+    cardImage: {
+        width: 120,
+        height: 120,
+        borderRadius: 10,
+        alignItems: 'center'
+    },
+
+    pricing: {fontSize: 16, 
               fontWeight: 'bold', 
               marginTop: 5, 
-              textAlign: 'right',
+              textAlign: 'left',
     },
 
     pickerContainer: { borderWidth: 1,
@@ -128,7 +149,7 @@ const styles = StyleSheet.create({
   },
 
     name: {fontWeight: 'bold', 
-           fontSize: 18 
+           fontSize: 20 
         },
   
     mainContent: { fontSize: 20, 

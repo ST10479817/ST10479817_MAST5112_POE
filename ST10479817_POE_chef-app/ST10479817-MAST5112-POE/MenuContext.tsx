@@ -8,6 +8,7 @@ export type MenuItemInformation = {
     description: string;
     price: number;
     course: string;  // Starters, Mains, Desserts
+    image: string | number; // This is for the images
 };
 
 // This is the structure of the object that the Context will provide.
