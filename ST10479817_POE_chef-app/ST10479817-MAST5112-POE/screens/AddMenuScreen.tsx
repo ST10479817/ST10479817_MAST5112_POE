@@ -18,7 +18,12 @@ export default function AddMenuScreen() {
     const [showModal, setShowModal] = useState(false);
 
     const preImages = [
-        require('../assets/pizza.jpg'),
+        require('../assets/tomato_soup.png'),
+        require('../assets/greek_salad.jpg'),
+        require('../assets/grilled_chicken.jpg'),
+        require('../assets/beef_burger.jpg'),
+        require('../assets/chocolate_cake.jpg'),
+        require('../assets/ice_cream_sundae.png'),
     ];
 
     const handleAdd = () => {
@@ -170,7 +175,7 @@ export default function AddMenuScreen() {
                                     key={index}
                                     onPress={() => {
                                         setSelectedPreImage(index);
-                                        setImage(img); // store the require() directly
+                                        setImage(img);
                                         setShowModal(false);
                                     }}
                                 >
@@ -197,17 +202,64 @@ export default function AddMenuScreen() {
 }
 const styles = StyleSheet.create({
 
-    imageButtons: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 },
-    imageButton: { backgroundColor: '#4CAF50', padding: 10, borderRadius: 8, flex: 1, marginHorizontal: 5, alignItems: 'center' },
+    imageButtons: { flexDirection: 'row', 
+        justifyContent: 'space-between', 
+        marginBottom: 10 
+    },
 
-    previewImage: { width: 105, height: 105, borderRadius: 10, marginVertical: 5},
-    imageCenter: {alignItems:'center'},
-    modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center' },
-    modalContent: { backgroundColor: '#fff', padding: 20, borderRadius: 10, width: '90%' },
-    modalTitle: { fontSize: 20, fontWeight: 'bold', marginBottom: 10, textAlign: 'center' },
-    imageGrid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around' },
-    preImage: { width: 100, height: 100, borderRadius: 10, margin: 5 },
-    closeBtn: { backgroundColor: '#f44336', padding: 10, borderRadius: 8, alignItems: 'center', marginTop: 10 },
+    imageButton: { backgroundColor: '#4CAF50', 
+        padding: 10, 
+        borderRadius: 8, 
+        flex: 1, 
+        marginHorizontal: 5, 
+        alignItems: 'center' 
+    },
+
+    previewImage: { width: 105, 
+        height: 105, 
+        borderRadius: 10, 
+        marginVertical: 5
+    },
+
+    imageCenter: {alignItems:'center'
+    },
+
+    modalOverlay: { flex: 1, 
+        backgroundColor: 'rgba(0,0,0,0.5)', 
+        justifyContent: 'center', 
+        alignItems: 'center' 
+    },
+
+    modalContent: { backgroundColor: '#fff', 
+        padding: 20, 
+        borderRadius: 10, 
+        width: '90%' 
+    },
+
+    modalTitle: { fontSize: 20, 
+        fontWeight: 'bold', 
+        marginBottom: 10, 
+        textAlign: 'center' 
+    },
+
+    imageGrid: { flexDirection: 'row', 
+        flexWrap: 'wrap', 
+        justifyContent: 'space-around' 
+    },
+
+    preImage: { width: 100, 
+        height: 100, 
+        borderRadius: 10, 
+        margin: 5 
+    },
+
+    closeBtn: { backgroundColor: '#f44336', 
+        padding: 10, 
+        borderRadius: 8, 
+        alignItems: 'center', 
+        marginTop: 10 
+    },
+    
     cardImage: {
         width: 120,
         height: 120,
